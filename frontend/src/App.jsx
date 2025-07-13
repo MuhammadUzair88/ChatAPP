@@ -1,13 +1,25 @@
 import React from "react";
-import Left from "./home/leftside/Left";
-import Right from "./home/rightside/Right";
+import { Route, Routes, Navigate } from "react-router-dom";
+import Signup from "../components/Signup";
+import Login from "../components/Login";
+import { useAuth } from "./context/AuthContext";
+import Home from "./home/home";
 
 const App = () => {
+  const { token } = useAuth();
+
   return (
-    <div className="flex h-screen">
-      <Left />
-      <Right />
-    </div>
+    <Routes>
+      {/* Public routes */}
+      <Route path="/login" element={!token ? <Login /> : <Navigate to="/" />} />
+      <Route
+        path="/signup"
+        element={!token ? <Signup /> : <Navigate to="/" />}
+      />
+
+      {/* Protected route */}
+      <Route path="/" element={token ? <Home /> : <Navigate to="/login" />} />
+    </Routes>
   );
 };
 
