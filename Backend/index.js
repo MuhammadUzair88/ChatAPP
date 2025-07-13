@@ -13,13 +13,11 @@ app.use(cors());
 dotenv.config();
 
 
-if(process.env.NODE_ENV !=="production"){
+
 server.listen(process.env.PORT,()=>{
     console.log(`Server is Started At ${process.env.PORT} `)
 })
-}
-//export for vercel
-export default server;
+
 
 
 app.use("/api/auth",AuthROutes );
