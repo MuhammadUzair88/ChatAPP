@@ -11,9 +11,16 @@ import { app, server } from './SocketIO/server.js';
 app.use(express.json());
 app.use(cors());
 dotenv.config();
+
+
+if(process.env.NODE_ENV !=="production"){
 server.listen(process.env.PORT,()=>{
     console.log(`Server is Started At ${process.env.PORT} `)
 })
+}
+//export for vercel
+export default server;
+
 
 app.use("/api/auth",AuthROutes );
 app.use("/api/message",MessageRoutes );
@@ -26,7 +33,7 @@ mongoose.connect(process.env.MONGODB_URI)
   })
   .catch((error) => {
     console.error("❌ Error In Database Connection:", error.message);
-  });1
+  });
 
 
 app.get('/', (req, res) => {
