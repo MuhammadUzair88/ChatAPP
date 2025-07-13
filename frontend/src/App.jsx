@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Signup from "../components/Signup";
 import Login from "../components/Login";
 import { useAuth } from "./context/AuthContext";
-import Home from "./home/home";
+import Home from "./home/Home";
 
 const App = () => {
   const { token } = useAuth();
